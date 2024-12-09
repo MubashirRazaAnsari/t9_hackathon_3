@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
     return (
         <nav className="flex flex-col items-center p-4 bg-black">
             <div className="flex items-center justify-between w-full">
-                <Link href="/" className='hover:text-yellow-500 text-white'>
+                <Link href="/" className='text-yellow-500 font-bold text-2xl flex-grow text-center'>
                 <span className="text-yellow-500 font-bold text-2xl flex-grow text-center">
                     Food<span className="text-white">tuck</span>
                 </span>
