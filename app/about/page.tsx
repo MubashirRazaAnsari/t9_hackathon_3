@@ -122,7 +122,7 @@ export default function Aboutus() {
             <div className="p-6 border-2 rounded-lg text-center">
               <div className="flex justify-center mb-4">
                 <Image
-                  src="/student.png"
+                  src="/Cheifhat.svg"
                   width={80}
                   height={80}
                   alt="Best Chef"
@@ -140,7 +140,7 @@ export default function Aboutus() {
             <div className="p-6 border-2 rounded-lg text-center">
               <div className="flex justify-center mb-4">
                 <Image
-                  src="/coffee.png"
+                  src="/Coffee.png"
                   width={80}
                   height={80}
                   alt="120 Item Food"

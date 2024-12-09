@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
             { label: '404 Error', href: '/404' },
         ],
         shop: [
-            { label: 'Shop List', href: '/shop/shopList' },
+            { label: 'Shop List', href: '/shopList' },
             { label: 'Shop Details', href: '/shopDetail' },
             { label: 'Shopping Cart', href: '/shoppingcart' },
             { label: 'Checkout', href: '/checkout' },
@@ -66,9 +66,11 @@ const Navbar: React.FC = () => {
     return (
         <nav className="flex flex-col items-center p-4 bg-black">
             <div className="flex items-center justify-between w-full">
+                <Link href="/" className='hover:text-yellow-500 text-white'>
                 <span className="text-yellow-500 font-bold text-2xl flex-grow text-center">
                     Food<span className="text-white">tuck</span>
                 </span>
+                </Link>
                 <div className="md:hidden">
                     <button onClick={toggleMenu} aria-label="Toggle menu">
                         {isOpen ? <FaTimes className="text-white" /> : <FaBars className="text-white" />}
@@ -153,7 +155,7 @@ const Navbar: React.FC = () => {
                     <Link href="/signin" className='hover:text-yellow-500 text-white'>
                         <FaUser className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
                     </Link>
-                    <Link href="/shop" className='hover:text-yellow-500 text-white'>
+                    <Link href="/shopList" className='hover:text-yellow-500 text-white'>
                         <FaShoppingBag className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
                     </Link>
                 </div>

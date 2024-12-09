@@ -21,7 +21,7 @@ interface MenuSection {
 const menuData: MenuSection[] = [
   {
     title: "Starter Menu",
-    image: "/menu1.png",
+    image: "/menupage1.png",
     items: [
       {
         name: "Alder Grilled Chinook Salmon",
@@ -51,7 +51,7 @@ const menuData: MenuSection[] = [
   },
   {
     title: "Main Course",
-    image: "/menu2.png",
+    image: "/menupage2.png",
     items: [
       {
         name: "Optic Big Breakfast Combo Menu",
@@ -81,7 +81,7 @@ const menuData: MenuSection[] = [
   },
   {
     title: "Dessert",
-    image: "/menu3.png",
+    image: "/menupage3.png",
     items: [
       {
         name: "Fig and Lemon Cake",
@@ -111,7 +111,7 @@ const menuData: MenuSection[] = [
   },
   {
     title: "Drinks",
-    image: "/menu4.png",
+    image: "/menupage4.png",
     items: [
       {
         name: "Caffè Macchiato",
