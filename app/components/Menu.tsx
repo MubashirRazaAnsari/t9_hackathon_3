@@ -33,7 +33,7 @@ const Menu = () => {
         price: '12.5'
       },
       {
-        image: '/menu4.png',
+        image: '/Menu4.png',
         title: 'Lettuce Leaf',
         description: 'Lacus nisi, et ac dapibus velit in consequat.',
         price: '12.5'
