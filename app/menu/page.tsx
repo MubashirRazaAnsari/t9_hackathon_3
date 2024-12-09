@@ -145,21 +145,21 @@ const MenuSection = ({ section, index }: { section: MenuSection; index: number }
   const isEven = index % 2 === 0;
   
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12">
-      <div className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 items-center justify-center`}>
-        <div className="flex-1 w-full max-w-xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 border-b border-gray-200 pb-4 mb-8 text-center md:text-left">
+    <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-6">
+      <div className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 items-stretch justify-center`}>
+        <div className="flex-1 w-full max-w-xl flex flex-col">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 border-b border-gray-200 pb-1 -mb-1 text-center">
             {section.title}
           </h2>
-          <ul className="space-y-8">
+          <ul className="space-y-3 overflow-y-auto flex-1 pt-4">
             {section.items.map((item, idx) => (
-              <li key={idx} className="flex justify-between items-start gap-4 group hover:bg-gray-50 p-4 rounded-lg transition-colors">
+              <li key={idx} className="flex justify-between items-center gap-2 group hover:bg-gray-50 p-1.5 rounded-lg transition-colors">
                 <div className="flex-1">
                   <h3 className="font-bold text-gray-800 group-hover:text-[#FF9F0D] transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-sm text-gray-600 mt-2">{item.description}</p>
-                  <p className="text-xs text-gray-500 mt-1">{item.calories} CAL</p>
+                  <p className="text-sm text-gray-600 mt-[1px]">{item.description}</p>
+                  <p className="text-xs text-gray-500 mt-[1px]">{item.calories} CAL</p>
                 </div>
                 <span className="text-[#FF9F0D] font-bold whitespace-nowrap text-lg">
                   ${item.price}
@@ -168,8 +168,8 @@ const MenuSection = ({ section, index }: { section: MenuSection; index: number }
             ))}
           </ul>
         </div>
-        <div className="flex-1 w-full max-w-md flex justify-center items-center">
-          <div className="relative w-full aspect-square">
+        <div className="flex-1 w-full max-w-md">
+          <div className="relative w-full aspect-[3/4]">
             <Image
               src={section.image}
               alt={section.title}
