@@ -26,7 +26,7 @@ export default function NotFound() {
               Oops! Looks like something went wrong
             </p>
             <p className="text-lg md:text-xl text-gray-600">
-              Page cannot be found! We'll have it figured out in no time.
+              Page cannot be found We&apos;ll have it figured out in no time.
             </p>
             <p className="text-lg md:text-xl text-gray-600">
               Meanwhile, check out these fresh ideas:

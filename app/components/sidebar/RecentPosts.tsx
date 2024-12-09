@@ -6,28 +6,28 @@ const posts = [
   {
     date: 'June 22, 2020',
     description: 'Lorem ipsum dolor sit cing elit, sed do.',
-    image: '/path/to/image1.jpg',
+    image: '/blog1.png',
   },
   {
     date: 'June 22, 2020',
     description: 'Lorem ipsum dolor sit cing elit, sed do.',
-    image: '/path/to/image2.jpg',
+    image: '/blog2.png',
   },
   {
     date: 'June 22, 2020',
     description: 'Lorem ipsum dolor sit cing elit, sed do.',
-    image: '/path/to/image3.jpg',
+    image: '/blog3.png',
   },
   {
     date: 'June 22, 2020',
     description: 'Lorem ipsum dolor sit cing elit, sed do.',
-    image: '/path/to/image4.jpg',
+    image: '/blog4.png',
   },
 ];
 
 const RecentPosts = () => {
   return (
-    <div className="bg-black text-white p-6 rounded-lg">
+    <div className="bg-white text-black p-6 rounded-lg">
       <h2 className="text-lg font-semibold mb-4">Recent Post</h2>
       {posts.map((post, index) => (
         <div key={index} className="flex items-center mb-4">

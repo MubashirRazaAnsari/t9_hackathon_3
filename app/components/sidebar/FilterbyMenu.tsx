@@ -1,50 +1,55 @@
 // app/components/sidebar/FilterByMenu.tsx
 
 import React from 'react';
+import Image from 'next/image';
 
 const menuItems = [
   {
     name: 'Chicken Fry',
     count: 26,
-    image: '/path/to/chicken-fry.jpg',
+    image: '/choose1.png',
   },
   {
     name: 'Burger Food',
     count: 46,
-    image: '/path/to/burger-food.jpg',
+    image: '/choose4.png',
   },
   {
     name: 'Pizza',
     count: 16,
-    image: '/path/to/pizza.jpg',
+    image: '/choose3.png',
   },
   {
     name: 'Fresh Fruits',
     count: 36,
-    image: '/path/to/fresh-fruits.jpg',
+    image: '/choose2.png',
   },
   {
     name: 'Vegetables',
     count: 16,
-    image: '/path/to/vegetables.jpg',
+    image: '/choose1.png',
   },
 ];
 
 const FilterByMenu = () => {
   return (
-    <div className="bg-black text-white p-6 rounded-lg">
-      <h2 className="text-lg font-semibold mb-4">Filter By Menu</h2>
+    <div className="space-y-4">
+      <h3 className='text-lg font-bold text-gray-800 border-b border-gray-100 pb-4'>Filter By Menu</h3>
       {menuItems.map((item, index) => (
-        <div key={index} className="flex items-center justify-between mb-4">
-          <div className="flex items-center">
-            <img
-              src={item.image}
-              alt={item.name}
-              className="w-16 h-16 rounded-md object-cover mr-4"
-            />
-            <p className="text-gray-400">{item.name}</p>
+        <div key={index} className="transition-all duration-300 hover:translate-x-2 cursor-pointer group">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Image
+                src={item.image}
+                alt={item.name}
+                width={60}
+                height={60}
+                className="rounded-lg object-cover"
+              />
+              <span className="text-gray-700">{item.name}</span>
+            </div>
+            <span className="text-[#FF9F0D]">({item.count})</span>
           </div>
-          <p className="text-gray-400">{item.count}</p>
         </div>
       ))}
     </div>

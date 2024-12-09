@@ -1,237 +1,249 @@
+'use client';
+
 import React from 'react';
-import Image from 'next/image'; 
-
-import { IoChevronForwardOutline} from "react-icons/io5";
-import { FaPizzaSlice, FaHamburger, FaUtensils } from "react-icons/fa"; 
-import { GiChefToque } from "react-icons/gi";
-
-import PageHeader from '../components/PageHeader';
+import Image from 'next/image';
 import Statistics from '../components/Statistics';
+import PageHeader from '../components/PageHeader';
 
+interface MenuItem {
+  name: string;
+  description: string;
+  calories: number;
+  price: number;
+}
 
-const Menu = () => {
+interface MenuSection {
+  title: string;
+  image: string;
+  items: MenuItem[];
+}
+
+const menuData: MenuSection[] = [
+  {
+    title: "Starter Menu",
+    image: "/menu1.png",
+    items: [
+      {
+        name: "Alder Grilled Chinook Salmon",
+        description: "Toasted French bread topped with romano, cheddar",
+        calories: 560,
+        price: 32
+      },
+      {
+        name: "Berries and Creme Tart",
+        description: "Gorgonzola, ricotta, mozzarella, taleggio",
+        calories: 700,
+        price: 43
+      },
+      {
+        name: "Tormentoso Bush Pizza Pintage",
+        description: "Ground cumin, avocado, peeled and cubed",
+        calories: 1000,
+        price: 14
+      },
+      {
+        name: "Spicy Vegan Potato Curry",
+        description: "Spreadable cream cheese, crumbled blue cheese",
+        calories: 560,
+        price: 35
+      }
+    ]
+  },
+  {
+    title: "Main Course",
+    image: "/menu2.png",
+    items: [
+      {
+        name: "Optic Big Breakfast Combo Menu",
+        description: "Toasted French bread topped with romano, cheddar",
+        calories: 560,
+        price: 32
+      },
+      {
+        name: "Cashew Chicken With Stir-Fry",
+        description: "Gorgonzola, ricotta, mozzarella, taleggio",
+        calories: 700,
+        price: 43
+      },
+      {
+        name: "Vegetables & Green Salad",
+        description: "Ground cumin, avocado, peeled and cubed",
+        calories: 1000,
+        price: 14
+      },
+      {
+        name: "Spicy Vegan Potato Curry",
+        description: "Spreadable cream cheese, crumbled blue cheese",
+        calories: 560,
+        price: 35
+      }
+    ]
+  },
+  {
+    title: "Dessert",
+    image: "/menu3.png",
+    items: [
+      {
+        name: "Fig and Lemon Cake",
+        description: "Toasted French bread topped with romano, cheddar",
+        calories: 560,
+        price: 32
+      },
+      {
+        name: "Creamy Mascarpone Cake",
+        description: "Gorgonzola, ricotta, mozzarella, taleggio",
+        calories: 700,
+        price: 43
+      },
+      {
+        name: "Pastry, Blueberries, Lemon Juice",
+        description: "Ground cumin, avocado, peeled and cubed",
+        calories: 1000,
+        price: 14
+      },
+      {
+        name: "Pain au Chocolat",
+        description: "Spreadable cream cheese, crumbled blue cheese",
+        calories: 560,
+        price: 35
+      }
+    ]
+  },
+  {
+    title: "Drinks",
+    image: "/menu4.png",
+    items: [
+      {
+        name: "Caffè Macchiato",
+        description: "Toasted French bread topped with romano, cheddar",
+        calories: 560,
+        price: 32
+      },
+      {
+        name: "Aperol Spritz Cappuccino",
+        description: "Gorgonzola, ricotta, mozzarella, taleggio",
+        calories: 700,
+        price: 43
+      },
+      {
+        name: "Caffè Latte Campuri",
+        description: "Ground cumin, avocado, peeled and cubed",
+        calories: 1000,
+        price: 14
+      },
+      {
+        name: "Tormentoso Bush Tea Pintage",
+        description: "Spreadable cream cheese, crumbled blue cheese",
+        calories: 560,
+        price: 35
+      }
+    ]
+  }
+];
+
+const MenuSection = ({ section, index }: { section: MenuSection; index: number }) => {
+  const isEven = index % 2 === 0;
+  
   return (
-    <div className="w-full overflow-hidden">
-      <div className="min-h-screen flex flex-col items-center">
-        {/* Header */}
-        <PageHeader title="Our Food Menu" currentPage="Menu" />  
-
-        {/* Starter Menu */}
-        <section className="w-full max-w-7xl mx-auto my-12 px-4 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-8 items-center">
-            <div className="w-full md:w-1/2 relative aspect-[4/3]">
-              <Image
-                src="/menu1.png"
-                alt="Starter Menu"
-                fill
-                className="rounded-lg shadow-lg object-cover"
-              />
-            </div>
-            <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">
-                Starter Menu
-              </h2>
-              <ul className="text-gray-600 space-y-4">
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Alder Grilled Chinook Salmon</h3>
-                  <p className="text-sm">Toasted French bread topped with romano, cheddar</p>
-                  <p className="text-xs text-gray-500">560 CAL</p>
+    <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 items-center justify-center`}>
+        <div className="flex-1 w-full max-w-xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 border-b border-gray-200 pb-4 mb-8 text-center md:text-left">
+            {section.title}
+          </h2>
+          <ul className="space-y-8">
+            {section.items.map((item, idx) => (
+              <li key={idx} className="flex justify-between items-start gap-4 group hover:bg-gray-50 p-4 rounded-lg transition-colors">
+                <div className="flex-1">
+                  <h3 className="font-bold text-gray-800 group-hover:text-[#FF9F0D] transition-colors">
+                    {item.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-2">{item.description}</p>
+                  <p className="text-xs text-gray-500 mt-1">{item.calories} CAL</p>
                 </div>
-                <span className="text-orange-500 font-bold">32$</span>
+                <span className="text-[#FF9F0D] font-bold whitespace-nowrap text-lg">
+                  ${item.price}
+                </span>
               </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Berries and Creme Tart</h3>
-                  <p className="text-sm">Gorgonzola, ricotta, mozzarella, taleggio</p>
-                  <p className="text-xs text-gray-500">700 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">43$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Tormentoso Bush Pizza Pintage</h3>
-                  <p className="text-sm">Ground cumin, avocado, peeled and cubed</p>
-                  <p className="text-xs text-gray-500">1000 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">14$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Spicy Vegan Potato Curry</h3>
-                  <p className="text-sm">Spreadable cream cheese, crumbled blue cheese</p>
-                  <p className="text-xs text-gray-500">560 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">35$</span>
-              </li>
-            </ul>
-            </div>
+            ))}
+          </ul>
+        </div>
+        <div className="flex-1 w-full max-w-md flex justify-center items-center">
+          <div className="relative w-full aspect-square">
+            <Image
+              src={section.image}
+              alt={section.title}
+              fill
+              className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 object-cover"
+            />
           </div>
-        </section>
-
-        {/* Main Course */}
-        <section className="w-full max-w-7xl mx-auto my-12 px-4 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-8 items-center">
-            <div className="w-full md:w-1/2 order-2 md:order-1">
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">
-                Main Course
-              </h2>
-              <ul className="text-gray-600 space-y-4">
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Optic Big Breakfast Combo Menu</h3>
-                  <p className="text-sm">Toasted French bread topped with romano, cheddar</p>
-                  <p className="text-xs text-gray-500">560 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">32$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Cashew Chicken With Stir-Fry</h3>
-                  <p className="text-sm">Gorgonzola, ricotta, mozzarella, taleggio</p>
-                  <p className="text-xs text-gray-500">700 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">43$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Vegetables & Green Salad</h3>
-                  <p className="text-sm">Ground cumin, avocado, peeled and cubed</p>
-                  <p className="text-xs text-gray-500">1000 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">14$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Spicy Vegan Potato Curry</h3>
-                  <p className="text-sm">Spreadable cream cheese, crumbled blue cheese</p>
-                  <p className="text-xs text-gray-500">560 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">35$</span>
-              </li>
-            </ul>
-            </div>
-            <div className="w-full md:w-1/2 relative aspect-[4/3] order-1 md:order-2">
-              <Image
-                src="/menu2.png"
-                alt="Main Course"
-                fill
-                className="rounded-lg shadow-lg object-cover"
-              />
-            </div>
-          </div>
-        </section>
-
-        <Statistics />
-
-        {/* Dessert */}
-        <section className="w-full max-w-7xl mx-auto my-12 px-4 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-8 items-center">
-            <div className="w-full md:w-1/2 relative aspect-[4/3]">
-              <Image
-                src="/menu3.png"
-                alt="Dessert"
-                fill
-                className="rounded-lg shadow-lg object-cover"
-              />
-            </div>
-            <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">
-                Dessert
-              </h2>
-              <ul className="text-gray-600 space-y-4">
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Fig and Lemon Cake</h3>
-                  <p className="text-sm">Toasted French bread topped with romano, cheddar</p>
-                  <p className="text-xs text-gray-500">560 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">32$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Creamy Mascarpone Cake</h3>
-                  <p className="text-sm">Gorgonzola, ricotta, mozzarella, taleggio</p>
-                  <p className="text-xs text-gray-500">700 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">43$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Pastry, Blueberries, Lemon Juice</h3>
-                  <p className="text-sm">Ground cumin, avocado, peeled and cubed</p>
-                  <p className="text-xs text-gray-500">1000 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">14$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Pain au Chocolat</h3>
-                  <p className="text-sm">Spreadable cream cheese, crumbled blue cheese</p>
-                  <p className="text-xs text-gray-500">560 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">35$</span>
-              </li>
-            </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Drinks */}
-        <section className="w-full max-w-7xl mx-auto my-12 px-4 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-8 items-center">
-            <div className="w-full md:w-1/2 order-2 md:order-1">
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">
-                Drinks
-              </h2>
-              <ul className="text-gray-600 space-y-4">
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Caffè Macchiato</h3>
-                  <p className="text-sm">Toasted French bread topped with romano, cheddar</p>
-                  <p className="text-xs text-gray-500">560 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">32$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Aperol Spritz Cappuccino</h3>
-                  <p className="text-sm">Gorgonzola, ricotta, mozzarella, taleggio</p>
-                  <p className="text-xs text-gray-500">700 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">43$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Caffè Latte Campuri</h3>
-                  <p className="text-sm">Ground cumin, avocado, peeled and cubed</p>
-                  <p className="text-xs text-gray-500">1000 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">14$</span>
-              </li>
-              <li className="flex justify-between">
-                <div>
-                  <h3 className="font-bold">Tormentoso Bush Tea Pintage</h3>
-                  <p className="text-sm">Spreadable cream cheese, crumbled blue cheese</p>
-                  <p className="text-xs text-gray-500">560 CAL</p>
-                </div>
-                <span className="text-orange-500 font-bold">35$</span>
-              </li>
-            </ul>
-            </div>
-            <div className="w-full md:w-1/2 relative aspect-[4/3] order-1 md:order-2">
-              <Image
-                src="/menu4.png"
-                alt="Drinks"
-                fill
-                className="rounded-lg shadow-lg object-cover"
-              />
-            </div>
-          </div>
-        </section>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Menu;
+export default function Menu() {
+  return (
+    <div className="bg-white">
+      <PageHeader title="Our Menu" currentPage="Menu" />
+      
+      <div className="container mx-auto py-8">
+        {/* Menu Header */}
+        <div className="text-center mb-16">
+          <h3 className="text-[#FF9F0D] font-great-vibes text-3xl mb-2">
+            Special Selection
+          </h3>
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Delicious <span className="text-[#FF9F0D]">Menu</span>
+          </h2>
+        </div>
+
+        {/* First Half of Menu Sections */}
+        <div className="space-y-16">
+          {menuData.slice(0, 2).map((section, index) => (
+            <MenuSection key={section.title} section={section} index={index} />
+          ))}
+        </div>
+
+        {/* Statistics Section */}
+        <div className="-mx-4 sm:-mx-6 lg:-mx-8">
+          <Statistics />
+        </div>
+
+        {/* Second Half of Menu Sections */}
+        <div className="space-y-16">
+          {menuData.slice(2).map((section, index) => (
+            <MenuSection key={section.title} section={section} index={index + 2} />
+          ))}
+        </div>
+      </div>
+
+      {/* Partners Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h4 className="font-Inter text-base md:text-lg text-[#FF9F0D]">Partners & Clients</h4>
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mt-2">
+              We work with the best people
+            </h2>
+          </div>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
+              {[1, 2, 3, 4, 5, 6].map((num) => (
+                <Image
+                  key={num}
+                  src={`/partner${num}.png`}
+                  alt={`Partner ${num}`}
+                  width={100}
+                  height={50}
+                  className="hover:opacity-80 transition-opacity"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

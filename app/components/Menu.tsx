@@ -66,24 +66,24 @@ const Menu = () => {
   ]
 
   return (
-    <section className="py-24 bg-transparent">
+    <section className="py-12 md:py-24 bg-transparent">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h3 className="text-[#FF9F0D] font-great-vibes text-3xl mb-2">
+        <div className="text-center mb-8 md:mb-12">
+          <h3 className="text-[#FF9F0D] font-great-vibes text-2xl md:text-3xl mb-2">
             Choose & pick
           </h3>
-          <h2 className="text-[#FF9F0D] text-6xl font-bold">
+          <h2 className="text-[#FF9F0D] text-4xl md:text-6xl font-bold">
             Fr<span className="text-white">om Our Menu</span>
           </h2>
         </div>
 
         {/* Categories */}
-        <div className="flex justify-between max-w-4xl mx-auto mb-12">
+        <div className="flex flex-wrap justify-center md:justify-between gap-4 max-w-4xl mx-auto mb-8 md:mb-12">
           {categories.map((category) => (
             <button
               key={category.id}
-              className={`text-xl ${
+              className={`text-lg md:text-xl ${
                 category.active 
                   ? 'text-[#FF9F0D] font-bold' 
                   : 'text-white font-normal hover:text-[#FF9F0D] transition-colors'
@@ -94,30 +94,29 @@ const Menu = () => {
           ))}
         </div>
 
-        {/* Menu Image */}
-        <div className="flex flex-col md:flex-row justify-center items-center">
-            <div className="w-1/2">
-          <Image 
-            src="/hero.png"
-            alt="Our Menu"
-            width={515}
-            height={500}
-                className="w-full object-contain"
+        {/* Menu Image and Items */}
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
+          <div className="w-full lg:w-1/2 max-w-md">
+            <Image 
+              src="/hero.png"
+              alt="Our Menu"
+              width={515}
+              height={500}
+              className="w-full object-contain"
             />
-            </div>
-        <div className="grid grid-cols-2 gap-8">
-          {menuItems.map((item, index) => (
-            <MenuItem
-              key={index}
-              image={item.image}
-              title={item.title}
-              description={item.description}
-              price={item.price}
-            />
-          ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full lg:w-1/2">
+            {menuItems.map((item, index) => (
+              <MenuItem
+                key={index}
+                image={item.image}
+                title={item.title}
+                description={item.description}
+                price={item.price}
+              />
+            ))}
+          </div>
         </div>
-        </div>
-
       </div>
     </section>
   )

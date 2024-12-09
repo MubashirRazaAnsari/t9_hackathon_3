@@ -55,49 +55,7 @@ export default function SignUpPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-black text-white">
-        <div className="container mx-auto py-10 px-6 grid grid-cols-4 gap-8">
-          {/* About Section */}
-          <div>
-            <h4 className="font-bold mb-2">About Us</h4>
-            <p>
-              Corporate clients and leisure travelers rely on FoodTuck for dependable service.
-            </p>
-            <p className="mt-2">Opening Hours: Mon-Sat 9:00 AM - 6:00 PM</p>
-          </div>
-          {/* Links */}
-          <div>
-            <h4 className="font-bold mb-2">Useful Links</h4>
-            <ul>
-              <li><Link href="/about">About</Link></li>
-              <li><Link href="/menu">Menu</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-            </ul>
-          </div>
-          {/* Help */}
-          <div>
-            <h4 className="font-bold mb-2">Help</h4>
-            <ul>
-              <li><Link href="/faq">FAQ</Link></li>
-              <li><Link href="/support-policy">Support Policy</Link></li>
-              <li><Link href="/privacy">Privacy</Link></li>
-            </ul>
-          </div>
-          {/* Recent Posts */}
-          <div>
-            <h4 className="font-bold mb-2">Recent Posts</h4>
-            <ul>
-              <li>Is fast food good for your body? - Feb 20, 2022</li>
-              <li>Change your food habit - Feb 18, 2022</li>
-              <li>Do you like fast food? - Feb 15, 2022</li>
-            </ul>
-          </div>
-        </div>
-        <p className="text-center py-4">
-          © 2024 FoodTuck. All Rights Reserved.
-        </p>
-      </footer>
+      
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PopularTags from './PopularTags';
-import PhotoGallery from '../blog/PhotoGallery';
+import PhotoGallery from './PhotoGallery';
 import SocialFollow from './SocialFollow';
 import ProfileCard from './ProfileCard';
 import RecentPosts from './RecentPosts';

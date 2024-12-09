@@ -13,9 +13,9 @@ const ExtraordinaryTaste = () => {
   ]
 
   const features = [
-    { icon: <FaHamburger className="w-8 h-8" />, label: 'Fast Food' },
-    { icon: <FaCookieBite className="w-8 h-8" />, label: 'Lunch' },
-    { icon: <FaWineGlass className="w-8 h-8" />, label: 'Dinner' },
+    { icon: <FaHamburger className="w-12 h-12" />, label: 'Fast Food' },
+    { icon: <FaCookieBite className="w-12 h-12" />, label: 'Lunch' },
+    { icon: <FaWineGlass className="w-12 h-12" />, label: 'Dinner' },
   ]
 
   return (
@@ -104,10 +104,10 @@ const ExtraordinaryTaste = () => {
             </p>
 
             {/* Feature Icons */}
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-3 gap-4">
               {features.map((feature, index) => (
                 <div key={index} className="text-center">
-                  <div className="bg-[#FF9F0D] w-20 h-20 rounded-2xl mx-auto mb-4 flex items-center justify-center text-white">
+                  <div className="bg-[#FF9F0D] w-30 h-28 rounded-2xl mx-auto mb-4 flex items-center justify-center text-white">
                     {feature.icon}
                   </div>
                   <span className="text-white font-medium">{feature.label}</span>

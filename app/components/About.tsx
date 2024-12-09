@@ -20,8 +20,8 @@ const About = () => {
                 <h3 className="text-[#FF9F0D] font-great-vibes text-3xl mb-4">
                   About us
                 </h3>
-                <h2 className="text-[#FF9F0D] text-5xl font-bold leading-tight">
-                  We Create the best
+                <h2 className="text-white text-5xl font-bold leading-tight">
+                  <span className="text-[#FF9F0D]">We</span> Create the best
                   <br /> foody product
                 </h2>
               </div>

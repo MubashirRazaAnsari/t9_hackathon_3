@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaSearch, FaShoppingBag, FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
+import { FaSearch, FaShoppingBag, FaBars, FaTimes, FaChevronDown, FaShoppingCart, FaUser } from 'react-icons/fa';
 
 interface DropdownProps {
   items: { label: string; href: string }[];
@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
     const dropdownMenus = {
         blog: [
             { label: 'Blog Grid', href: '/blog' },
-            { label: 'Blog Details', href: '/blog/blogDetail' },
+            { label: 'Blog Details', href: '/blogDetail' },
         ],
         about: [
             { label: 'About Us', href: '/about' },
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
             {/* Main Navigation for Desktop */}
             <div className={'hidden md:flex flex-row items-center justify-around w-full p-2 transition-all duration-300 ease-in-out'}>
                 <div className="flex items-center space-x-6 text-base font-normal">
-                    <Link href="/home" className='hover:text-yellow-500 text-white'>
+                    <Link href="/" className='hover:text-yellow-500 text-white'>
                         Home
                     </Link>
                     <Link href="/menu" className='hover:text-yellow-500 text-white'>
@@ -150,7 +150,15 @@ const Navbar: React.FC = () => {
                         />
                         <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-500" />
                     </div>
-                    <FaShoppingBag className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
+                    <Link href="/shoppingcart" className='hover:text-yellow-500 text-white'>
+                        <FaShoppingCart className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
+                    </Link>
+                    <Link href="/signin" className='hover:text-yellow-500 text-white'>
+                        <FaUser className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
+                    </Link>
+                    <Link href="/shop" className='hover:text-yellow-500 text-white'>
+                        <FaShoppingBag className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
+                    </Link>
                 </div>
             </div>
 
