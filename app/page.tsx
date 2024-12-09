@@ -6,18 +6,16 @@ import ExtraordinaryTaste from './components/ExtraordinaryTaste'
 import Statistics from './components/Statistics'
 import Menu from './components/Menu'
 import FoodTeam from './components/FoodTeam'
-
+import Hero from './components/Hero'
 import Testimonials from './components/Testimonials'
 import RestaurantProcess from './components/RestaurantProcess'
 import BlogPost from './components/BlogPost'
 
-
-
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-black overflow-hidden">
       {/* Hero Section */}
-      <div className="relative min-h-screen w-full">
+      <div className="relative min-h-screen w-full flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image 
@@ -32,7 +30,7 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 h-full container lg:left-10 mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10  w-[90vw] container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="absolute left-0 h-full hidden md:block">
             <Image 
               src="/herosideline.png" 
@@ -44,10 +42,12 @@ export default function Home() {
           </div>
           
           {/* Two-column layout */}
-          <div className="flex flex-col lg:flex-row items-center justify-between h-full py-20 lg:py-0 gap-10 lg:gap-0">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-0">
             {/* Left column - Text content */}
             <div className="flex flex-col space-y-6 lg:space-y-8 max-w-xl text-center lg:text-left">
-              
+              <h3 className="text-[#FF9F0D] font-great-vibes text-2xl lg:text-3xl lg:text-left">
+                Its Quick and Amazing
+              </h3>
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
                 <span className='text-[#F7A600]'>The</span> Art of speed 
                 <br className="hidden sm:block" /> food Quality   
@@ -79,19 +79,19 @@ export default function Home() {
       </div>
 
       {/* Other Sections Container */}
-      <div className="w-full sm:w-full md:w-[80vw] lg:w-[80vw] mx-auto xl:w-[80vw] 2xl:w-[80vw]">
+      <div className="w-full mx-auto" style={{ maxWidth: "min(80vw, 1920px)" }}>
         <About />
         <FoodCategory />
         <ExtraordinaryTaste />
       </div>
 
       {/* Full Width Statistics Section */}
-      <div className="-mx-4 sm:-mx-6 lg:-mx-8">
+      <div className="w-full overflow-hidden">
         <Statistics />
       </div>
 
       {/* Resume Other Sections Container */}
-      <div className="w-full sm:w-full md:w-[80vw] lg:w-[80vw] mx-auto xl:w-[80vw] 2xl:w-[80vw]">
+      <div className="w-full mx-auto" style={{ maxWidth: "min(80vw, 1920px)" }}>
         <Menu />
         <FoodTeam />
         <Testimonials />

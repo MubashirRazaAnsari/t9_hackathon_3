@@ -66,7 +66,7 @@ const Menu = () => {
   ]
 
   return (
-    <section className="py-12 md:py-24 bg-transparent">
+    <section className="py-12 md:py-24 bg-transparent ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
@@ -105,7 +105,7 @@ const Menu = () => {
               className="w-full object-contain"
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full lg:w-1/2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-2 w-full lg:w-1/2">
             {menuItems.map((item, index) => (
               <MenuItem
                 key={index}

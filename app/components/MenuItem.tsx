@@ -10,9 +10,9 @@ interface MenuItemProps {
 
 const MenuItem = ({ image, title, description, price }: MenuItemProps) => {
   return (
-    <div className="flex items-start gap-3 md:gap-4 w-full max-w-[300px] min-h-[79px] mx-auto">
+    <div className="flex items-start gap-3 md:gap-6 w-full max-w-[600px] min-h-[79px] mx-auto">
       {/* Image */}
-      <div className="relative w-[45px] h-[45px] md:w-[50px] md:h-[50px] flex-shrink-0">
+      <div className="relative w-[80px] h-[80px] md:w-[80px] md:h-[80px] flex-shrink-0">
         <Image
           src={image}
           alt={title}
