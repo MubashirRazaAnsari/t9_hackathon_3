@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import PageHeader from '../components/PageHeader';
 
 const faqData = [
   {
@@ -30,7 +29,7 @@ const faqData = [
   },
 ];
 
-export default function FAQPage() {
+const FAQPage: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -38,52 +37,45 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="bg-white">
-      <div className="min-h-screen flex flex-col">
-        <PageHeader 
-          title="Frequently Asked Questions"
-          currentPage="FAQ"
-        />
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-black text-white py-6 text-center">
+        <h1 className="text-3xl font-bold">FAQ Page</h1>
+        <p className="text-sm mt-2">
+          <span className="text-gray-400">Home</span> &gt; <span className="text-gray-400">faq</span>
+        </p>
+      </header>
 
-        <main className="flex-grow container mx-auto px-4 py-12 lg:py-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Common Questions</h2>
-            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              Find answers to frequently asked questions about our services, food quality, delivery, and more.
-            </p>
+      <main className="max-w-6xl mx-auto py-16 px-4">
+        <h2 className="text-4xl font-bold text-center mb-8">Questions Looks Here</h2>
+        <p className="text-center text-gray-600 mb-12">
+          Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        </p>
 
-            <div className="grid gap-6 md:gap-8">
-              {faqData.map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
-                >
-                  <div
-                    onClick={() => toggleFAQ(index)}
-                    className="cursor-pointer p-6 flex justify-between items-center"
-                  >
-                    <h3 className="text-lg md:text-xl font-medium pr-4">{faq.question}</h3>
-                    <span className={`text-2xl text-[#FF9F0D] transition-transform duration-300 ${
-                      openIndex === index ? 'transform rotate-45' : ''
-                    }`}>
-                      +
-                    </span>
-                  </div>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      openIndex === index ? 'max-h-48' : 'max-h-0'
-                    }`}
-                  >
-                    <p className="text-gray-600 p-6 pt-0 text-sm md:text-base">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
-              ))}
+        <div className="grid gap-6 md:grid-cols-2">
+          {faqData.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-lg shadow-lg transition-transform duration-200"
+            >
+              <div
+                onClick={() => toggleFAQ(index)}
+                className="cursor-pointer flex justify-between items-center"
+              >
+                <h3 className="text-lg font-medium">{faq.question}</h3>
+                <span className="text-2xl">
+                  {openIndex === index ? '-' : '+'}
+                </span>
+              </div>
+              {openIndex === index && (
+                <p className="text-sm text-gray-600 mt-4">{faq.answer}</p>
+              )}
             </div>
-          </div>
-        </main>
-      </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
-} 
+};
+
+export default FAQPage;
+

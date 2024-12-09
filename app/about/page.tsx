@@ -1,172 +1,221 @@
-'use client';
-
 import Image from "next/image";
 import { IoPlayOutline } from "react-icons/io5";
-import PageHeader from '../components/PageHeader';
+import TeamMember from '../components/TeamMember';
+import Testimonials from '../components/Testimonials';
+import Menu from '../components/Menu';
+import PageHeader from "../components/PageHeader";
 
-// Import images
+export default function Aboutus() {
+  const teamMembers = [
+    {
+      name: "Mark Henry",
+      role: "Owner",
+      image: "/chef1.png"
+    },
+    {
+      name: "Lucky Helen",
+      role: "Chef",
+      image: "/chef2.png"
+    },
+    {
+      name: "Moon Henry",
+      role: "Founder",
+      image: "/chef3.png"
+    },
+    {
+      name: "Tom Monrow",
+      role: "Specialist",
+      image: "/chef4.png"
+    }
+  ];
 
-
-
-export default function About() {
   return (
-    <div className="bg-white">
-      <PageHeader 
-        title="About Us"
-        currentPage="About" 
-      />
-
-
-      {/* Second Section: Content and Buttons */}
-      <section className="text-black body-font bg-white">
-        <div className="container mx-auto flex flex-col md:flex-row px-5 py-24 items-center justify-between">
-          {/* Left Text */}
-          <div className="w-full md:w-[60%] flex flex-col items-center md:items-start text-center md:text-left">
-            <h1 className="text-sm mb-4 font-medium text-[#FF9F0D] italic flex items-center gap-2">
-              About us <span className="w-12 h-[1px] bg-[#FF9F0D] inline-block"></span>
-            </h1>
-            <p className="text-black title-font text-3xl font-bold">
-              Food is an important part of a balanced Diet
-            </p>
-            <p className="mb-8 leading-relaxed mt-8 text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              diam pellentesque bibendum non dui volutpat fringilla bibendum.
-              Urna, elit augue urna, vitae feugiat pretium donec id elementum.
-              Ultrices mattis vitae mus risus. Lacus nisi, et ac dapibus sit eu
-              velit in consequat.
-            </p>
-            <div className="flex justify-center md:justify-start space-x-4">
-              <button className="inline-flex text-white bg-[#FF9F0D] border-0 py-3 px-6 focus:outline-none hover:bg-[#f59000] rounded text-lg transition-colors">
-                Show More
-              </button>
-              <button className="inline-flex items-center text-white bg-black border-0 py-3 px-6 focus:outline-none hover:bg-gray-900 rounded text-lg transition-colors">
-                <IoPlayOutline className="mr-2 text-2xl" />
-                Watch video
-              </button>
-            </div>
-          </div>
-
-          {/* Right Images */}
-          <div className="w-full md:w-[35%] flex flex-col space-y-6 mt-10 md:mt-0">
-            <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+    <div className="w-full overflow-hidden">
+      <PageHeader title="About Us" currentPage="About Us" />
+      {/* First Section: Content and Buttons */}
+      <section className="w-full py-16 md:py-24">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            {/* Left Images Group */}
+            <div className="w-full lg:w-1/2 flex flex-col md:flex-row gap-4">
               <Image
-                src={'/lemon.png'}
-                alt="Lemon dish"
-                className="object-cover"
-                fill
+                className="w-full md:w-1/2 h-auto object-cover rounded-lg"
+                alt="hero"
+                src="/aboutus.png"
+                width={309}
+                height={536}
+                priority
               />
-            </div>
-            <div className="flex gap-6">
-              <div className="relative w-1/2 aspect-[4/3] rounded-lg overflow-hidden">
+              <div className="flex flex-col gap-4">
                 <Image
-                  src={'/yougurt.png'}
-                  alt="Yogurt dish"
-                  className="object-cover"
-                  fill
+                  className="w-full h-auto object-cover rounded-lg"
+                  alt="image2"
+                  src="/about4.png"
+                  width={309}
+                  height={271}
+                />
+                <Image
+                  className="w-full h-auto object-cover rounded-lg"
+                  alt="image3"
+                  src="/about3.png"
+                  width={309}
+                  height={382}
                 />
               </div>
-              <div className="relative w-1/2 aspect-[4/3] rounded-lg overflow-hidden">
-                <Image
-                  src={'/pasta.png'}
-                  alt="Pasta dish"
-                  className="object-cover"
-                  fill
-                />
+            </div>
+
+            {/* Right Content */}
+            <div className="w-full lg:w-1/2 space-y-6">
+              <div className="flex items-center gap-2">
+                <span className="text-[#FF9F0D] font-medium">About us</span>
+                <div className="w-12 h-[2px] bg-[#FF9F0D]"></div>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+                Food is an important part of a balanced Diet
+              </h2>
+              <p className="text-gray-600 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+                diam pellentesque bibendum non dui volutpat fringilla bibendum.
+                Urna, elit augue urna, vitae feugiat pretium donec id elementum.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <button className="px-6 py-3 bg-[#FF9F0D] text-white rounded-lg hover:bg-[#ff8c00] transition-colors">
+                  Show More
+                </button>
+                <button className="px-6 py-3 flex items-center gap-2 text-gray-900 rounded-lg hover:bg-gray-100 transition-colors">
+                  <IoPlayOutline size={24} />
+                  Watch video
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Third Section: Why Choose Us */}
-      <section className="text-black body-font bg-gray-50">
-        <div className="container mx-auto px-5 py-24">
-          <div className="text-center mb-16">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Us</h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.
+      {/* Why Choose Us Section */}
+      <section className="w-full py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Us</h2>
+            <p className="text-gray-600">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam 
+              pellentesque bibendum non dui volutpat fringilla bibendum.
             </p>
           </div>
-          <div className="relative w-full aspect-[21/9] rounded-lg overflow-hidden">
+          <div className="relative w-full">
             <Image
-              src={'/thirdSection.png'}
+              src="/about.png"
               alt="Why Choose Us"
-              className="object-cover"
-              fill
+              width={1320}
+              height={386}
+              className="w-full h-auto object-cover rounded-lg"
             />
           </div>
         </div>
       </section>
 
-      {/* Fourth Section: Features */}
-      <section className="text-black body-font bg-white">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap -m-4">
+      {/* Features Section */}
+      <section className="w-full py-16">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1 */}
-            <div className="p-4 md:w-1/3">
-              <div className="h-full border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="relative w-full h-48 flex items-center justify-center">
-                  <Image
-                    src={'/Student.png'}
-                    alt="Best Chef"
-                    className="object-cover"
-                    width={100}
-                    height={100}
-                  />
-                </div>
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-center mb-4">BEST CHEF</h2>
-                  <p className="text-gray-600 text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat.
-                  </p>
-                </div>
+            <div className="p-6 border-2 rounded-lg text-center">
+              <div className="flex justify-center mb-4">
+                <Image
+                  src="/student.png"
+                  width={80}
+                  height={80}
+                  alt="Best Chef"
+                  className="w-20 h-20"
+                />
               </div>
+              <h3 className="text-xl font-bold mb-4">BEST CHEF</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Quisque diam pellentesque bibendum non dui volutpat
+              </p>
             </div>
 
             {/* Feature 2 */}
-            <div className="p-4 md:w-1/3">
-              <div className="h-full border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="relative w-full h-48 flex items-center justify-center">
-                  <Image
-                    src={'/Coffee.png'}
-                    alt="120 Item Food"
-                    className="object-cover"
-                    width={100}
-                    height={100}
-                  />
-                </div>
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-center mb-4">120 Item Food</h2>
-                  <p className="text-gray-600 text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat.
-                  </p>
-                </div>
+            <div className="p-6 border-2 rounded-lg text-center">
+              <div className="flex justify-center mb-4">
+                <Image
+                  src="/coffee.png"
+                  width={80}
+                  height={80}
+                  alt="120 Item Food"
+                  className="w-20 h-20"
+                />
               </div>
+              <h3 className="text-xl font-bold mb-4">120 ITEM FOOD</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Quisque diam pellentesque bibendum non dui volutpat
+              </p>
             </div>
 
             {/* Feature 3 */}
-            <div className="p-4 md:w-1/3">
-              <div className="h-full border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="relative w-full h-48 flex items-center justify-center">
-                  <Image
-                    src={'/Person.png'}
-                    alt="Clean Environment"
-                    className="object-cover"
-                    width={100}
-                    height={100}
-                  />
-                </div>
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-center mb-4">Clean Environment</h2>
-                  <p className="text-gray-600 text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat.
-                  </p>
-                </div>
+            <div className="p-6 border-2 rounded-lg text-center">
+              <div className="flex justify-center mb-4">
+                <Image
+                  src="/man.png"
+                  width={80}
+                  height={80}
+                  alt="Clean Environment"
+                  className="w-20 h-20"
+                />
               </div>
+              <h3 className="text-xl font-bold mb-4">CLEAN ENVIRONMENT</h3>
+              <p className="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Quisque diam pellentesque bibendum non dui volutpat
+              </p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Team Member Section */}
+      <section className="w-full py-20 bg-[#ffa425]">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Team Member</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Varius sed pharetra dictum neque massa congue
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member, index) => (
+              <TeamMember
+                key={index}
+                name={member.name}
+                role={member.role}
+                image={member.image}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="w-full bg-[#1E1E1E]">
+        <Testimonials />
+      </section>
+
+      {/* Menu Section */}
+      <section className="w-full py-20 bg-black">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Food Menu</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Varius sed pharetra dictum neque massa congue
+            </p>
+          </div>
+          <Menu />
+        </div>
+      </section>
     </div>
   );
-} 
+}

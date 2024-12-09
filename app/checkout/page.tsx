@@ -1,9 +1,9 @@
 import Image from "next/image"
-import cheakout from "@/../../public/cheakout.png"
+
 
 export default function CheckoutPage() {
   return (
-    <div className="container lg:max-w-7xl lg:w-[80vw] mx-auto px-4 py-8">
+    <div className="container max-w-7xl mt-20 mx-auto px-4 py-8">
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Left Column - Forms */}
         <div className="space-y-6">
@@ -179,7 +179,7 @@ export default function CheckoutPage() {
                 <div className="flex-1">
                   <h3 className="font-medium">Chicken Tikka Kebab</h3>
                   <p className="text-sm text-gray-500">150 gm net</p>
-                  <p className="text-sm text-gray-500">$50</p>
+                  <p className="text-sm text-gray-500">50$</p>
                 </div>
               </div>
             ))}
@@ -188,7 +188,7 @@ export default function CheckoutPage() {
           <div className="mt-6 space-y-2 border-t pt-4">
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">Subtotal</span>
-              <span className="font-medium">$130</span>
+              <span className="font-medium">130$</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">Shipping</span>
@@ -200,11 +200,11 @@ export default function CheckoutPage() {
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">Tax</span>
-              <span className="font-medium">$54.76</span>
+              <span className="font-medium">54.76$</span>
             </div>
             <div className="flex justify-between border-t pt-2">
               <span className="font-semibold">Total</span>
-              <span className="font-semibold">$432.65</span>
+              <span className="font-semibold">432.65$</span>
             </div>
           </div>
 
@@ -213,6 +213,6 @@ export default function CheckoutPage() {
           </button>
         </div>
       </div>
-    </div>
-  )
+    </div>
+  )
 }

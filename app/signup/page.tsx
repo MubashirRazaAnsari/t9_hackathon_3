@@ -1,100 +1,71 @@
-'use client';
-
 import Link from "next/link";
+import PageHeader from "../components/PageHeader";
 import Image from "next/image";
-import PageHeader from '../components/PageHeader';
-
 export default function SignUpPage() {
   return (
     <div className="min-h-screen bg-white">
-      <PageHeader 
-        title="Sign Up"
-        currentPage="Sign Up"
-      />
+      {/* Header */}
+      <PageHeader title="Sign Up" currentPage="Sign Up" />
+
+      {/* Hero Section */}
+      
 
       {/* Signup Form */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-md bg-white shadow-xl rounded-lg p-8">
-          <h3 className="text-2xl font-bold mb-8 text-center">Create Account</h3>
-          <form className="space-y-6">
-            <div>
-              <label className="block mb-2 font-medium text-gray-700">Full Name</label>
+      <section className="py-16">
+        <div className="container mx-auto max-w-lg bg-white shadow-lg rounded-md p-8">
+          <h3 className="text-2xl font-bold mb-6 text-center">Sign Up</h3>
+          <form>
+            <div className="mb-4">
+              <label className="block mb-2 font-medium">Name</label>
               <input
                 type="text"
-                className="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-[#FF9F0D] focus:border-[#FF9F0D] outline-none transition-colors"
+                className="w-full border rounded px-3 py-2 focus:ring focus:ring-yellow-300"
                 placeholder="Enter your name"
               />
             </div>
-            <div>
-              <label className="block mb-2 font-medium text-gray-700">Email Address</label>
+            <div className="mb-4">
+              <label className="block mb-2 font-medium">Email</label>
               <input
                 type="email"
-                className="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-[#FF9F0D] focus:border-[#FF9F0D] outline-none transition-colors"
+                className="w-full border rounded px-3 py-2 focus:ring focus:ring-yellow-300"
                 placeholder="Enter your email"
               />
             </div>
-            <div>
-              <label className="block mb-2 font-medium text-gray-700">Password</label>
+            <div className="mb-4">
+              <label className="block mb-2 font-medium">Password</label>
               <input
                 type="password"
-                className="w-full border border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-[#FF9F0D] focus:border-[#FF9F0D] outline-none transition-colors"
+                className="w-full border rounded px-3 py-2 focus:ring focus:ring-yellow-300"
                 placeholder="Enter your password"
               />
             </div>
-            <div className="flex items-center">
-              <input 
-                type="checkbox" 
-                id="remember"
-                className="w-4 h-4 text-[#FF9F0D] border-gray-300 rounded focus:ring-[#FF9F0D]" 
-              />
-              <label htmlFor="remember" className="ml-2 text-gray-700">Remember me</label>
+            <div className="flex items-center mb-4">
+              <input type="checkbox" className="mr-2" />
+              <span>Remember me?</span>
             </div>
             <button
               type="submit"
-              className="w-full bg-[#FF9F0D] hover:bg-[#e8890b] text-white font-bold py-3 rounded-md transition-colors duration-300"
+              className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 rounded"
             >
               Sign Up
             </button>
-            <div className="text-center">
-              <Link 
-                href="/forgot-password" 
-                className="text-[#FF9F0D] hover:text-[#e8890b] transition-colors"
-              >
-                Forgot password?
-              </Link>
-            </div>
+            <p className="text-center mt-4">
+              <Link href="/forgot-password" className="text-yellow-500">Forgot password?</Link>
+            </p>
           </form>
-
-          <div className="mt-8 space-y-4">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <button className="w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 border border-gray-300 rounded-md shadow-sm transition-colors duration-300 flex items-center justify-center space-x-2">
-                <Image src="/google.png" alt="Google" width={20} height={20} />
-                <span>Sign up with Google</span>
-              </button>
-              <button className="w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 border border-gray-300 rounded-md shadow-sm transition-colors duration-300 flex items-center justify-center space-x-2">
-                <Image src="/apple.png" alt="Apple" width={20} height={20} />
-                <span>Sign up with Apple</span>
-              </button>
-            </div>
+          <div className="text-center mt-8">
+            <p>or</p>
+            <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex items-center justify-center">
+            <Image src="/google.png" alt="Google" width={24} height={24} className="h-6 mr-2" />
+              Sign up with Google
+            </button>
+            <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex items-center justify-center">
+              <Image src="/Apple.png" alt="Apple" width={24} height={24} className="h-6 mr-2" />
+              Sign up with Apple
+            </button>
           </div>
-
-          <p className="mt-8 text-center text-gray-600">
-            Already have an account?{' '}
-            <Link href="/login" className="text-[#FF9F0D] hover:text-[#e8890b] font-medium transition-colors">
-              Log in
-            </Link>
-          </p>
         </div>
       </section>
     </div>
   );
-} 
+}

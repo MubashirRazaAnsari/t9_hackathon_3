@@ -6,11 +6,11 @@ import ExtraordinaryTaste from './components/ExtraordinaryTaste'
 import Statistics from './components/Statistics'
 import Menu from './components/Menu'
 import FoodTeam from './components/FoodTeam'
-import DessertMenu from './components/DessertMenu'
+
 import Testimonials from './components/Testimonials'
 import RestaurantProcess from './components/RestaurantProcess'
 import BlogPost from './components/BlogPost'
-import Footer from './components/Footer'
+
 
 
 export default function Home() {
@@ -90,7 +90,6 @@ export default function Home() {
         <RestaurantProcess />
         <BlogPost />
       </div>
-      <Footer />
     </main>
   );
 }

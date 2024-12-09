@@ -1,10 +1,66 @@
- "use client";
+"use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { FaSearch, FaShoppingBag, FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
 
+interface DropdownProps {
+  items: { label: string; href: string }[];
+  isOpen: boolean;
+}
+
+const Dropdown: React.FC<DropdownProps> = ({ items, isOpen }) => {
+  if (!isOpen) return null;
+  
+  return (
+    <div className="absolute top-full left-0 bg-black border border-gray-700 rounded-md py-2 min-w-[200px] z-50">
+      {items.map((item, index) => (
+        <Link 
+          key={index}
+          href={item.href}
+          className="block px-4 py-2 text-white hover:bg-[#FF9F0D] transition-colors"
+        >
+          {item.label}
+        </Link>
+      ))}
+    </div>
+  );
+};
+
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+    const handleDropdownHover = (dropdownName: string) => {
+        setActiveDropdown(dropdownName);
+    };
+
+    const handleDropdownLeave = () => {
+        setActiveDropdown(null);
+    };
+
+    const dropdownMenus = {
+        blog: [
+            { label: 'Blog Grid', href: '/blog' },
+            { label: 'Blog Details', href: '/blog/blogDetail' },
+        ],
+        about: [
+            { label: 'About Us', href: '/about' },
+            { label: 'Our Team', href: '/chefgrid' },
+            { label: 'Join Our Team', href: '/careers' },
+        ],
+        pages: [
+            { label: 'FAQ', href: '/faq' },
+            { label: 'Terms & Conditions', href: '/terms' },
+            { label: 'Privacy Policy', href: '/privacy' },
+            { label: '404 Error', href: '/404' },
+        ],
+        shop: [
+            { label: 'Shop List', href: '/shop/shopList' },
+            { label: 'Shop Details', href: '/shopDetail' },
+            { label: 'Shopping Cart', href: '/shoppingcart' },
+            { label: 'Checkout', href: '/checkout' },
+        ],
+    };
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -25,28 +81,66 @@ const Navbar: React.FC = () => {
             {/* Main Navigation for Desktop */}
             <div className={'hidden md:flex flex-row items-center justify-around w-full p-2 transition-all duration-300 ease-in-out'}>
                 <div className="flex items-center space-x-6 text-base font-normal">
-                    <Link href="/" className='hover:text-yellow-500 text-white'>
+                    <Link href="/home" className='hover:text-yellow-500 text-white'>
                         Home
                     </Link>
-                    <Link href="/" className='hover:text-yellow-500 text-white'>
+                    <Link href="/menu" className='hover:text-yellow-500 text-white'>
                         Menu
                     </Link>
-                    <Link href="/" className='hover:text-yellow-500 text-white'>
-                        Blog
-                    </Link>
-                    <Link href="/" className='hover:text-yellow-500 text-white'>
-                        Pages
-                    </Link>
-                    <Link href="/" className='hover:text-yellow-500 text-white flex items-center'>
-                        About <span className='ml-1 mt-1'><FaChevronDown className='text-xs' /></span>
-                    </Link>
-                    <Link href="/" className='hover:text-yellow-500 text-white'>
-                        Shop
-                    </Link>
-                    <Link href="/" className='hover:text-yellow-500 text-white'>
+                    
+                    {/* Blog Dropdown */}
+                    <div 
+                        className="relative"
+                        onMouseEnter={() => handleDropdownHover('blog')}
+                        onMouseLeave={handleDropdownLeave}
+                    >
+                        <button className='hover:text-yellow-500 text-white flex items-center'>
+                            Blog <FaChevronDown className='ml-1 text-xs' />
+                        </button>
+                        <Dropdown items={dropdownMenus.blog} isOpen={activeDropdown === 'blog'} />
+                    </div>
+
+                    {/* Pages Dropdown */}
+                    <div 
+                        className="relative"
+                        onMouseEnter={() => handleDropdownHover('pages')}
+                        onMouseLeave={handleDropdownLeave}
+                    >
+                        <button className='hover:text-yellow-500 text-white flex items-center'>
+                            Pages <FaChevronDown className='ml-1 text-xs' />
+                        </button>
+                        <Dropdown items={dropdownMenus.pages} isOpen={activeDropdown === 'pages'} />
+                    </div>
+
+                    {/* About Dropdown */}
+                    <div 
+                        className="relative"
+                        onMouseEnter={() => handleDropdownHover('about')}
+                        onMouseLeave={handleDropdownLeave}
+                    >
+                        <button className='hover:text-yellow-500 text-white flex items-center'>
+                            About <FaChevronDown className='ml-1 text-xs' />
+                        </button>
+                        <Dropdown items={dropdownMenus.about} isOpen={activeDropdown === 'about'} />
+                    </div>
+
+                    {/* Shop Dropdown */}
+                    <div 
+                        className="relative"
+                        onMouseEnter={() => handleDropdownHover('shop')}
+                        onMouseLeave={handleDropdownLeave}
+                    >
+                        <button className='hover:text-yellow-500 text-white flex items-center'>
+                            Shop <FaChevronDown className='ml-1 text-xs' />
+                        </button>
+                        <Dropdown items={dropdownMenus.shop} isOpen={activeDropdown === 'shop'} />
+                    </div>
+
+                    <Link href="/contact" className='hover:text-yellow-500 text-white'>
                         Contact
                     </Link>
                 </div>
+
                 <div className="flex items-center mt-4 md:mt-0">
                     <div className="relative">
                         <input 
@@ -56,30 +150,46 @@ const Navbar: React.FC = () => {
                         />
                         <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-500" />
                     </div>
-                    <FaShoppingBag className="ml-4 text-white" />
+                    <FaShoppingBag className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
                 </div>
             </div>
+
             {/* Mobile Menu */}
-            <div className={`md:hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-                <div className="flex flex-col items-center space-y-2 mt-2">
-                    <Link href="/" className='hover:text-yellow-500 text-white'>
+            <div className={`md:hidden w-full transition-all duration-500 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+                <div className="flex flex-col space-y-4 mt-4">
+                    <Link href="/home" className='hover:text-yellow-500 text-white'>
                         Home
                     </Link>
                     <Link href="/menu" className='hover:text-yellow-500 text-white'>
                         Menu
                     </Link>
-                    <Link href="/blog" className='hover:text-yellow-500 text-white'>
-                        Blog
-                    </Link>
-                    <Link href="/pages" className='hover:text-yellow-500 text-white'>
-                        Pages
-                    </Link>
-                    <Link href="/" className='hover:text-yellow-500 text-white flex items-center'>
-                        About <span className='ml-1 mt-1'><FaChevronDown className='text-xs' /></span>
-                    </Link>
-                    <Link href="/" className='hover:text-yellow-500 text-white'>
-                        Shop
-                    </Link>
+                    
+                    {/* Mobile Dropdowns */}
+                    {Object.entries(dropdownMenus).map(([key, items]) => (
+                        <div key={key} className="space-y-2">
+                            <button 
+                                onClick={() => setActiveDropdown(activeDropdown === key ? null : key)}
+                                className='hover:text-yellow-500 text-white flex items-center justify-between w-full'
+                            >
+                                {key.charAt(0).toUpperCase() + key.slice(1)}
+                                <FaChevronDown className={`text-xs transition-transform ${activeDropdown === key ? 'rotate-180' : ''}`} />
+                            </button>
+                            {activeDropdown === key && (
+                                <div className="pl-4 space-y-2">
+                                    {items.map((item, index) => (
+                                        <Link 
+                                            key={index}
+                                            href={item.href}
+                                            className="block text-gray-300 hover:text-yellow-500"
+                                        >
+                                            {item.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    ))}
+
                     <Link href="/contact" className='hover:text-yellow-500 text-white'>
                         Contact
                     </Link>
