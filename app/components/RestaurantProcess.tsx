@@ -5,9 +5,9 @@ import Button from './ui/Button'
 
 const RestaurantProcess = () => {
   return (
-    <section className="relative min-h-[600px] w-screen md:-mx-[10vw]">
+    <section className="relative min-h-[400px] w-screen md:-mx-[10vw]">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0 ">
+      <div className="absolute inset-0 z-0">
         <Image 
           src="/bottmBg.png" 
           alt="Process background" 
@@ -20,34 +20,34 @@ const RestaurantProcess = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="max-w-3xl flex flex-col ">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="ml-auto max-w-3xl flex flex-col text-right">
           {/* Header */}
-          <h3 className="text-[#FF9F0D] font-great-vibes text-3xl mb-4">
+          <h3 className="text-[#FF9F0D] font-great-vibes text-2xl mb-3">
             Restaurant Active Process
           </h3>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             <span className="text-[#FF9F0D]">We</span> Document Every Food
             <br />
             Bean Process untile it is saved
           </h2>
-          <p className="text-gray-300 text-lg mb-8 max-w-2xl">
+          <p className="text-gray-300 text-base mb-6 ml-auto max-w-2xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam 
             pellentesque bibendum non dui volutpat fringilla bibendum. Urna, elit augue urna,
           </p>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 justify-end">
             <Button 
               variant="outline"
               size="lg"
             >
               Read More
             </Button>
-            <button className="flex items-center justify-center w-16 h-16 rounded-full bg-[#FF9F0D] text-white hover:bg-[#FF9F0D]/90 transition-colors">
+            <button className="flex items-center justify-center w-14 h-14 rounded-full bg-[#FF9F0D] text-white hover:bg-[#FF9F0D]/90 transition-colors">
               <FaPlay className="ml-1" />
             </button>
-            <span className="text-white text-lg">
+            <span className="text-white text-base">
               Play Video
             </span>
           </div>

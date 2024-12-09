@@ -31,15 +31,15 @@ const Hero = () => {
         </div>
         
         {/* Two-column layout */}
-        <div className="flex flex-col lg:flex-row items-center justify-between h-full py-20 lg:py-0 gap-10 lg:gap-0">
+        <div className="flex flex-col lg:flex-row items-center justify-between h-full py-20 lg:py-0 gap-16 lg:gap-20">
           {/* Left column - Text content */}
-          <div className="flex flex-col space-y-6 lg:space-y-8 max-w-xl text-center lg:text-left">
+          <div className="flex flex-col space-y-8 lg:space-y-10 max-w-xl text-center lg:text-left">
             <Image 
               src="/herotext.png" 
               alt="Hero text" 
               width={300} 
               height={290}
-              className="animate-fade-in mx-auto lg:mx-0"
+              className="animate-fade-in mx-auto lg:mx-0 mb-4"
             />
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
               <span className='text-[#F7A600]'>The</span> Art of speed 
@@ -49,7 +49,7 @@ const Hero = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Varius sed pharetra dictum neque massa congue
             </p>  
-            <div className="flex justify-center lg:justify-start w-full">
+            <div className="flex justify-center lg:justify-start w-full pt-4">
               <Button size="lg">
                 See Menu
               </Button>
@@ -57,7 +57,7 @@ const Hero = () => {
           </div>
 
           {/* Right column - Hero image */}
-          <div className="relative w-full lg:w-auto">
+          <div className="relative w-full lg:w-auto lg:ml-10">
             <Image 
               src="/hero.png" 
               alt="hero" 

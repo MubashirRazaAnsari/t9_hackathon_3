@@ -15,7 +15,7 @@ import BlogPost from './components/BlogPost'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0D0D0D]">
+    <main className="min-h-screen bg-black">
       {/* Hero Section */}
       <div className="relative min-h-screen w-full">
         {/* Background Image */}
@@ -83,7 +83,15 @@ export default function Home() {
         <About />
         <FoodCategory />
         <ExtraordinaryTaste />
+      </div>
+
+      {/* Full Width Statistics Section */}
+      <div className="-mx-4 sm:-mx-6 lg:-mx-8">
         <Statistics />
+      </div>
+
+      {/* Resume Other Sections Container */}
+      <div className="w-full sm:w-full md:w-[80vw] lg:w-[80vw] mx-auto xl:w-[80vw] 2xl:w-[80vw]">
         <Menu />
         <FoodTeam />
         <Testimonials />

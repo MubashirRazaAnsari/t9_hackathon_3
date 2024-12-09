@@ -46,12 +46,9 @@ const Navbar: React.FC = () => {
         about: [
             { label: 'About Us', href: '/about' },
             { label: 'Our Team', href: '/chefgrid' },
-            { label: 'Join Our Team', href: '/careers' },
         ],
         pages: [
             { label: 'FAQ', href: '/faq' },
-            { label: 'Terms & Conditions', href: '/terms' },
-            { label: 'Privacy Policy', href: '/privacy' },
             { label: '404 Error', href: '/404' },
         ],
         shop: [

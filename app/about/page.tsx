@@ -179,8 +179,8 @@ export default function Aboutus() {
       <section className="w-full py-20 bg-[#ffa425]">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Team Member</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Team Member</h2>
+            <p className="text-white/80 max-w-2xl mx-auto">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Varius sed pharetra dictum neque massa congue
             </p>
@@ -207,8 +207,8 @@ export default function Aboutus() {
       <section className="w-full py-20 bg-black">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Food Menu</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl text-white font-bold mb-4">Our Food Menu</h2>
+            <p className="text-white/80 max-w-2xl mx-auto">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Varius sed pharetra dictum neque massa congue
             </p>

@@ -26,8 +26,29 @@ const FoodTeam = () => {
   ]
 
   return (
-    <section className="py-24 bg-transparent">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-24 bg-transparent overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute left-0 bottom-0 z-0">
+        <Image 
+          src="/teambackground.png" 
+          alt="Background decoration"
+          width={500}
+          height={500}
+          className="object-contain opacity-10 -rotate-45 scale-150"
+        />
+      </div>
+
+      <div className="absolute right-0 top-0 z-0">
+        <Image 
+          src="/teambackground.png" 
+          alt="Background decoration"
+          width={500}
+          height={500}
+          className="object-contain opacity-10 rotate-[135deg] scale-150"
+        />
+      </div>
+
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <h3 className="text-[#FF9F0D] font-great-vibes text-3xl mb-2">

@@ -6,7 +6,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaPinterest } from "rea
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col bg-black w-full mt-20">
+    <footer className="flex flex-col bg-black w-full">
       {/* Newsletter Section */}
       <div className="w-full px-4 sm:px-6 lg:px-[135px] py-6 sm:py-8 lg:py-[50px]">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
