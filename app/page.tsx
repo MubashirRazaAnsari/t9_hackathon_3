@@ -10,113 +10,98 @@ import Hero from '@/app/components/(landingpage)/Hero'
 import Testimonials from '@/app/components/Testimonials'
 import RestaurantProcess from '@/app/components/(landingpage)/RestaurantProcess'
 import BlogPost from '@/app/components/BlogPost'
+import { Suspense } from 'react'
+import Loading from '@/app/loading'
 
-async function getProducts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
-    next: { revalidate: 60 } // Revalidate every minute
-  })
-  if (!res.ok) throw new Error('Failed to fetch products')
-  return res.json()
-}
-
-async function getDeliveries() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/deliveries`, {
-    next: { revalidate: 60 }
-  })
-  if (!res.ok) throw new Error('Failed to fetch deliveries')
-  return res.json()
-}
-
-export default async function Home() {
-  const products = await getProducts()
-  const deliveries = await getDeliveries()
-  
+export default function Home() {
   return (
     <main className="min-h-screen bg-black overflow-hidden">
-      {/* Hero Section */}
-      <div className="relative min-h-screen w-full flex items-center">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="/herobg.png" 
-            alt="Hero background" 
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/80" />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10  w-[90vw] container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="absolute left-0 h-full hidden md:block">
+      <Suspense fallback={<Loading />}>
+        {/* Hero Section */}
+        <div className="relative min-h-screen w-full flex items-center">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
             <Image 
-              src="/herosideline.png" 
-              alt="Decorative line" 
-              width={25} 
-              height={500}
-              className="h-full w-auto"
+              src="/herobg.png" 
+              alt="Hero background" 
+              fill
+              className="object-cover"
+              priority
             />
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-black/80" />
           </div>
-          
-          {/* Two-column layout */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-0">
-            {/* Left column - Text content */}
-            <div className="flex flex-col space-y-6 lg:space-y-8 max-w-xl text-center lg:text-left">
-              <h3 className="text-[#FF9F0D] font-great-vibes text-2xl lg:text-3xl lg:text-left">
-                Its Quick and Amazing
-              </h3>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
-                <span className='text-[#F7A600]'>The</span> Art of speed 
-                <br className="hidden sm:block" /> food Quality   
-              </h1>
-              <p className="text-gray-300 text-base md:text-lg lg:text-xl max-w-2xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Varius sed pharetra dictum neque massa congue
-              </p>  
-              <div className="flex justify-center lg:justify-start w-full">
-                <Button size="lg">
-                  See Menu
-                </Button>
-              </div>
-            </div>
 
-            {/* Right column - Hero image */}
-            <div className="relative w-full lg:w-auto">
+          {/* Content */}
+          <div className="relative z-10  w-[90vw] container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="absolute left-0 h-full hidden md:block">
               <Image 
-                src="/hero.png" 
-                alt="hero" 
-                width={570} 
-                height={570} 
-                className="object-contain w-full h-auto max-w-[670px] mx-auto"
-                priority
+                src="/herosideline.png" 
+                alt="Decorative line" 
+                width={25} 
+                height={500}
+                className="h-full w-auto"
               />
             </div>
+            
+            {/* Two-column layout */}
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-0">
+              {/* Left column - Text content */}
+              <div className="flex flex-col space-y-6 lg:space-y-8 max-w-xl text-center lg:text-left">
+                <h3 className="text-[#FF9F0D] font-great-vibes text-2xl lg:text-3xl lg:text-left">
+                  Its Quick and Amazing
+                </h3>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
+                  <span className='text-[#F7A600]'>The</span> Art of speed 
+                  <br className="hidden sm:block" /> food Quality   
+                </h1>
+                <p className="text-gray-300 text-base md:text-lg lg:text-xl max-w-2xl">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Varius sed pharetra dictum neque massa congue
+                </p>  
+                <div className="flex justify-center lg:justify-start w-full">
+                  <Button size="lg">
+                    See Menu
+                  </Button>
+                </div>
+              </div>
+
+              {/* Right column - Hero image */}
+              <div className="relative w-full lg:w-auto">
+                <Image 
+                  src="/hero.png" 
+                  alt="hero" 
+                  width={570} 
+                  height={570} 
+                  className="object-contain w-full h-auto max-w-[670px] mx-auto"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Other Sections Container */}
-      <div className="w-full mx-auto" style={{ maxWidth: "min(80vw, 1920px)" }}>
-        <About />
-        <FoodCategory />
-        <ExtraordinaryTaste />
-      </div>
+        {/* Other Sections Container */}
+        <div className="w-full mx-auto" style={{ maxWidth: "min(80vw, 1920px)" }}>
+          <About />
+          <FoodCategory />
+          <ExtraordinaryTaste />
+        </div>
 
-      {/* Full Width Statistics Section */}
-      <div className="w-full overflow-hidden">
-        <Statistics />
-      </div>
+        {/* Full Width Statistics Section */}
+        <div className="w-full overflow-hidden">
+          <Statistics />
+        </div>
 
-      {/* Resume Other Sections Container */}
-      <div className="w-full mx-auto" style={{ maxWidth: "min(80vw, 1920px)" }}>
-        <Menu />
-        <FoodTeam />
-        <Testimonials />
-        <RestaurantProcess />
-        <BlogPost />
-      </div>
+        {/* Resume Other Sections Container */}
+        <div className="w-full mx-auto" style={{ maxWidth: "min(80vw, 1920px)" }}>
+          <Menu />
+          <FoodTeam />
+          <Testimonials />
+          <RestaurantProcess />
+          <BlogPost />
+        </div>
+      </Suspense>
     </main>
   );
 }
