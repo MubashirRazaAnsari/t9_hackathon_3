@@ -34,7 +34,7 @@ const menuItems = [
 const FilterByMenu = () => {
   return (
     <div className="space-y-4">
-      <h3 className='text-lg font-bold text-gray-800 border-b border-gray-100 pb-4'>Filter By Menu</h3>
+      <h3 className='text-lg font-bold text-gray-800 border-b border-gray-100 pb-4'>Filter By Category</h3>
       {menuItems.map((item, index) => (
         <div key={index} className="transition-all duration-300 hover:translate-x-2 cursor-pointer group">
           <div className="flex items-center justify-between">

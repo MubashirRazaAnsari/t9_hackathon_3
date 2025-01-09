@@ -6,7 +6,7 @@ import PageHeader from '@/app/components/PageHeader';
 import { FaStar, FaHeart, FaExchangeAlt } from 'react-icons/fa';
 import ProductTabs from './components/ProductTabs';
 import SimilarProducts from './components/SimilarProducts';
-// Removed the problematic imports
+
 const ShopDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);

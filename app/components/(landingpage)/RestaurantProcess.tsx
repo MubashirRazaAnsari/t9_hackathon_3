@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { FaPlay } from 'react-icons/fa'
-import Button from './ui/Button'
+import Button from '../ui/Button'
 
 const RestaurantProcess = () => {
   return (

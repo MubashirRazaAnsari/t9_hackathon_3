@@ -1,17 +1,36 @@
 import Image from "next/image";
-import About from './components/About'
-import Button from "./components/ui/Button";
-import FoodCategory from './components/FoodCategory'
-import ExtraordinaryTaste from './components/ExtraordinaryTaste'
-import Statistics from './components/Statistics'
-import Menu from './components/Menu'
-import FoodTeam from './components/FoodTeam'
-import Hero from './components/Hero'
-import Testimonials from './components/Testimonials'
-import RestaurantProcess from './components/RestaurantProcess'
-import BlogPost from './components/BlogPost'
+import About from '@/app/components/(landingpage)/About'
+import Button from "@/app/components/ui/Button";
+import FoodCategory from '@/app/components/(landingpage)/FoodCategory'
+import ExtraordinaryTaste from '@/app/components/(landingpage)/ExtraordinaryTaste'
+import Statistics from '@/app/components/(landingpage)/Statistics'
+import Menu from '@/app/components/(landingpage)/Menu'
+import FoodTeam from '@/app/components/(landingpage)/FoodTeam'
+import Hero from '@/app/components/(landingpage)/Hero'
+import Testimonials from '@/app/components/Testimonials'
+import RestaurantProcess from '@/app/components/(landingpage)/RestaurantProcess'
+import BlogPost from '@/app/components/BlogPost'
 
-export default function Home() {
+async function getProducts() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
+    next: { revalidate: 60 } // Revalidate every minute
+  })
+  if (!res.ok) throw new Error('Failed to fetch products')
+  return res.json()
+}
+
+async function getDeliveries() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/deliveries`, {
+    next: { revalidate: 60 }
+  })
+  if (!res.ok) throw new Error('Failed to fetch deliveries')
+  return res.json()
+}
+
+export default async function Home() {
+  const products = await getProducts()
+  const deliveries = await getDeliveries()
+  
   return (
     <main className="min-h-screen bg-black overflow-hidden">
       {/* Hero Section */}

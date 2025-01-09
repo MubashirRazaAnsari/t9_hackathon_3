@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
-import Button from './ui/Button'
+import Button from '../ui/Button'
+
 
 const Hero = () => {
   return (
@@ -48,9 +49,11 @@ const Hero = () => {
               Varius sed pharetra dictum neque massa congue
             </p>  
             <div className="flex justify-center lg:justify-start w-full pt-4">
-              <Button size="lg">
+              
+              <Button size="lg" href={'/menu'}>
                 See Menu
               </Button>
+            
             </div>
           </div>
 

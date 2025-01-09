@@ -1,7 +1,7 @@
 'use client';
-import PageHeader from '../components/PageHeader';
-import BlogPostCard from '../components/BlogPostCard';
-import BlogSidebar from '../components/BlogSidebar';
+import PageHeader from '@/app/components/PageHeader';
+import BlogPostCard from '@/app/components/BlogPostCard';
+import BlogSidebar from '@/app/components/BlogSidebar';
 
 // Blog posts data
 const blogPosts = [

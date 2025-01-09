@@ -6,11 +6,7 @@ import PageHeader from './components/PageHeader';
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      {/* Header with PageHeader component */}
-      <PageHeader 
-        title="404 Error" 
-        currentPage="404"
-      />
+      
 
       {/* Error Content Section */}
       <section className="flex-grow flex flex-col items-center justify-center py-16 px-4">

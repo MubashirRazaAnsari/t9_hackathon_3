@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const FoodTeam = () => {
   const chefs = [
@@ -91,9 +92,9 @@ const FoodTeam = () => {
 
         {/* See More Button */}
         <div className="flex justify-center">
-          <button className="px-8 py-3 border border-[#FF9F0D] text-[#FF9F0D] rounded-xl bg-transparent hover:bg-[#FF9F0D] hover:text-white transition-colors duration-300">
+          <Link href={'/chefgrid'} className="px-8 py-3 border border-[#FF9F0D] text-[#FF9F0D] rounded-xl bg-transparent hover:bg-[#FF9F0D] hover:text-white transition-colors duration-300">
             See More
-          </button>
+          </Link>
         </div>
       </div>
     </section>

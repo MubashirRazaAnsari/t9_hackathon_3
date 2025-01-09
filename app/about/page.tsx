@@ -2,7 +2,7 @@ import Image from "next/image";
 import { IoPlayOutline } from "react-icons/io5";
 import TeamMember from '../components/TeamMember';
 import Testimonials from '../components/Testimonials';
-import Menu from '../components/Menu';
+import Menu from '../components/(landingpage)/Menu';
 import PageHeader from "../components/PageHeader";
 
 export default function Aboutus() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Button from './ui/Button'
+import Button from '@/app/components/ui/Button'
 
 const About = () => {
   const features = [
@@ -53,7 +53,7 @@ const About = () => {
               </ul>
             </div>
 
-            <Button size="lg">
+            <Button size="lg" href='/about'>
               Read More
             </Button>
           </div>

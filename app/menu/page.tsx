@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Statistics from '../components/Statistics';
+import Statistics from '../components/(landingpage)/Statistics';
 import PageHeader from '../components/PageHeader';
 
 interface MenuItem {

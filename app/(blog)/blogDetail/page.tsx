@@ -1,7 +1,7 @@
 import PageHeader from "@/app/components/PageHeader";
 import Image from "next/image";
-import BlogSidebar from "../components/BlogSidebar";
-import BlogPostCard from "../components/BlogPostCard";
+import BlogSidebar from "@/app/components/BlogSidebar";
+import BlogPostCard from "@/app/components/BlogPostCard";
 
 // Sidebar data
 const sidebarData = {

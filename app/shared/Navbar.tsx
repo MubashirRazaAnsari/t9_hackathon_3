@@ -54,8 +54,6 @@ const Navbar: React.FC = () => {
         shop: [
             { label: 'Shop List', href: '/shopList' },
             { label: 'Shop Details', href: '/shopDetail' },
-            { label: 'Shopping Cart', href: '/shoppingcart' },
-            { label: 'Checkout', href: '/checkout' },
         ],
     };
 
