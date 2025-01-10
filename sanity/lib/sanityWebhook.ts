@@ -25,7 +25,7 @@ export async function syncToMongoDB(type: 'product' | 'delivery', id: string) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.SANITY_API_KEY!
+        'x-api-key': process.env.SANITY_API_TOKEN!
       },
       body: JSON.stringify(data)
     })
