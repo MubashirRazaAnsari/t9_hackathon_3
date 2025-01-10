@@ -6,6 +6,6 @@ import { client } from './client'
 export function usePreview(query: string, params: string) {
   return useLiveQuery(query, params, {
     client,
-    token: process.env.SANITY_API_KEY,
+    token: process.env.SANITY_API_TOKEN,
   })
 }
