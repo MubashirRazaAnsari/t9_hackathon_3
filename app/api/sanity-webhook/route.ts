@@ -1,19 +1,33 @@
 import { NextResponse } from 'next/server'
-import { syncToMongoDB } from '@/sanity/lib/sanityWebhook'
-import { auth } from '@/lib/auth'
+import dbConnect from '@/lib/dbConnect'
+import Product from '@/models/Product'
+import Delivery from '@/models/Delivery'
 
 export async function POST(request: Request) {
   try {
-    const isAuthenticated = await auth(request)
-    if (!isAuthenticated) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
+    await dbConnect()
     const body = await request.json()
-    await syncToMongoDB(body.type, body._id)
+    
+    // Log webhook payload for debugging
+    console.log('Webhook payload:', body)
+
+    if (body._type === 'product') {
+      await Product.findOneAndUpdate(
+        { _id: body._id },
+        body,
+        { upsert: true }
+      )
+    } else if (body._type === 'delivery') {
+      await Delivery.findOneAndUpdate(
+        { _id: body._id },
+        body,
+        { upsert: true }
+      )
+    }
     
     return NextResponse.json({ success: true })
   } catch (error) {
+    console.error('Webhook error:', error)
     return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 })
   }
 } 
