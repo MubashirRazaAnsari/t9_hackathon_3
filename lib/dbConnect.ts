@@ -1,45 +1,37 @@
 import mongoose from 'mongoose';
 
+interface Cached {
+  conn: typeof mongoose | null
+  promise: Promise<typeof mongoose> | null
+}
+
 declare global {
-  var mongoose: {
-    conn: typeof mongoose | null
-    promise: Promise<typeof mongoose> | null
-  } | undefined
+  var mongoose: Cached | undefined
 }
 
 const MONGODB_URI = process.env.MONGO_URI as string;
 
 if (!MONGODB_URI) {
-  throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
+  throw new Error('Please define the MONGODB_URI environment variable');
 }
 
-let cached = global.mongoose || { conn: null, promise: null };
+let cached = global.mongoose ?? { conn: null, promise: null };
+global.mongoose = cached;
 
-async function dbConnect() {
+async function dbConnect(): Promise<typeof mongoose> {
   if (cached.conn) {
-    console.log('Using cached connection');
     return cached.conn;
   }
 
   if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 10000,
-    };
-
-    console.log('Creating new connection to MongoDB...');
-    cached.promise = mongoose.connect(MONGODB_URI, opts);
+    cached.promise = mongoose.connect(MONGODB_URI);
   }
 
   try {
     cached.conn = await cached.promise;
-    global.mongoose = cached;
-    console.log('Successfully connected to MongoDB');
     return cached.conn;
   } catch (e) {
     cached.promise = null;
-    console.error('MongoDB connection error:', e);
     throw e;
   }
 }
