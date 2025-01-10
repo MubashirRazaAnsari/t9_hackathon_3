@@ -6,16 +6,16 @@ import { auth } from '@/lib/auth';
 export async function GET() {
   try {
     await dbConnect();
-    const products = await Product.find({});
+    const products = await Product.find({}).select('-createdAt -updatedAt -__v');
     return NextResponse.json(products);
   } catch (error) {
+    console.error('Products GET error:', error);
     return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 });
   }
 }
 
 export async function POST(request: Request) {
   try {
-    // Check if user is authenticated
     const isAuthenticated = await auth(request);
     if (!isAuthenticated) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -26,6 +26,7 @@ export async function POST(request: Request) {
     const product = await Product.create(data);
     return NextResponse.json(product, { status: 201 });
   } catch (error) {
+    console.error('Products POST error:', error);
     return NextResponse.json({ error: 'Failed to create product' }, { status: 500 });
   }
 }

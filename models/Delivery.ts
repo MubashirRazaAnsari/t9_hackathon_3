@@ -1,14 +1,13 @@
-import { Schema, model, models } from 'mongoose';
+import mongoose from 'mongoose'
 
-const deliverySchema = new Schema(
-  {
-    type: { type: String, required: true },
-    estimatedTime: { type: String, required: true },
-    pickupAvailable: { type: Boolean, default: true },
-  },
-  { timestamps: true }
-);
+const deliverySchema = new mongoose.Schema({
+  _id: String,
+  _type: String,
+  title: String,
+  description: String,
+}, {
+  timestamps: true
+})
 
-const Delivery = models.Delivery || model('Delivery', deliverySchema);
-
-export default Delivery;
+const Delivery = mongoose.models.Delivery || mongoose.model('Delivery', deliverySchema)
+export default Delivery
