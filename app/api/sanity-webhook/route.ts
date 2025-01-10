@@ -15,43 +15,39 @@ export async function POST(request: Request) {
     await dbConnect()
     const body = await request.json()
     
-    console.log('Webhook payload:', body)
-    console.log('Document type:', body._type)
-    console.log('Document ID:', body._id)
+    console.log('Received webhook:', {
+      type: body._type,
+      operation: body.operation,
+      documentId: body._id
+    })
 
     if (!body._type || !body._id) {
-      console.error('Missing required fields:', body)
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+      throw new Error('Missing required fields')
     }
 
     let result
-    if (body._type === 'product') {
-      result = await Product.findOneAndUpdate(
-        { _id: body._id },
-        { ...body, updatedAt: new Date() },
-        { upsert: true, new: true }
-      )
-      console.log('Updated/Created product:', result)
-    } 
-    else if (body._type === 'delivery') {
-      result = await Delivery.findOneAndUpdate(
-        { _id: body._id },
-        { ...body, updatedAt: new Date() },
-        { upsert: true, new: true }
-      )
-      console.log('Updated/Created delivery:', result)
-    }
-    else {
-      console.error('Invalid document type:', body._type)
-      return NextResponse.json({ error: 'Invalid document type' }, { status: 400 })
+    switch (body.operation) {
+      case 'create':
+      case 'update':
+        const Model = body._type === 'product' ? Product : Delivery
+        result = await Model.findOneAndUpdate(
+          { _id: body._id },
+          body,
+          { upsert: true, new: true }
+        )
+        break
+      
+      case 'delete':
+        const DeleteModel = body._type === 'product' ? Product : Delivery
+        result = await DeleteModel.findByIdAndDelete(body._id)
+        break
+
+      default:
+        throw new Error(`Unknown operation: ${body.operation}`)
     }
 
-    if (!result) {
-      console.error('Failed to save document')
-      return NextResponse.json({ error: 'Failed to save document' }, { status: 500 })
-    }
-
-    return NextResponse.json({ success: true, data: result })
+    console.log('Operation result:', result)
+    return NextResponse.json({ success: true, result })
   } catch (error) {
     console.error('Webhook error:', error)
     return NextResponse.json({ 
