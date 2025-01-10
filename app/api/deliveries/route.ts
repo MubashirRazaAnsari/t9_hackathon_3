@@ -3,14 +3,27 @@ import dbConnect from '@/lib/dbConnect';
 import Delivery from '@/models/Delivery';
 import { auth } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
+    console.log('Connecting to database...')
     await dbConnect();
-    const deliveries = await Delivery.find({}).select('-createdAt -updatedAt -__v');
+    console.log('Database connected, fetching deliveries...')
+    
+    const deliveries = await Delivery.find({})
+      .select('-createdAt -updatedAt -__v')
+      .lean()
+      .limit(100);
+    
+    console.log(`Found ${deliveries.length} deliveries`)
     return NextResponse.json(deliveries);
   } catch (error) {
     console.error('Deliveries GET error:', error);
-    return NextResponse.json({ error: 'Failed to fetch deliveries' }, { status: 500 });
+    return NextResponse.json({ 
+      error: 'Failed to fetch deliveries',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 });
   }
 }
 
