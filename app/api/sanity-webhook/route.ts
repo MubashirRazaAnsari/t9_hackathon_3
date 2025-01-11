@@ -9,36 +9,26 @@ export async function POST(request: Request) {
     const payload = await request.json()
 
     // Log the incoming webhook
-    console.log('Webhook received:', {
+    console.log('Document received:', {
       type: payload._type,
-      id: payload._id,
-      rev: payload._rev
+      id: payload._id
     })
 
-    // Handle different operations
-    if (payload._type === 'product') {
-      const result = await Product.findOneAndUpdate(
-        { _id: payload._id },
-        payload,
-        { upsert: true, new: true }
-      )
-      return NextResponse.json({ success: true, result })
-    }
+    // Handle different document types
+    const Model = payload._type === 'product' ? Product : Delivery
+    
+    // Update or create document
+    const result = await Model.findOneAndUpdate(
+      { _id: payload._id },
+      payload,
+      { upsert: true, new: true }
+    )
 
-    if (payload._type === 'delivery') {
-      const result = await Delivery.findOneAndUpdate(
-        { _id: payload._id },
-        payload,
-        { upsert: true, new: true }
-      )
-      return NextResponse.json({ success: true, result })
-    }
-
-    return NextResponse.json({ error: 'Invalid document type' }, { status: 400 })
+    return NextResponse.json({ success: true, result })
   } catch (error) {
     console.error('Webhook error:', error)
     return NextResponse.json({ 
-      error: 'Webhook processing failed',
+      error: 'Processing failed',
       details: error instanceof Error ? error.message : String(error)
     }, { status: 500 })
   }
