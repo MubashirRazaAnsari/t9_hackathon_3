@@ -27,10 +27,8 @@ export async function POST(request: Request) {
     await dbConnect()
     const payload = await request.json()
 
-    console.log('Webhook received:', {
-      type: payload._type,
-      id: payload._id
-    })
+    // Log the incoming webhook
+    console.log('Webhook received:', payload)
 
     if (!payload._type || !payload._id) {
       return NextResponse.json({ error: 'Invalid payload' }, { status: 400 })
@@ -38,6 +36,13 @@ export async function POST(request: Request) {
 
     const Model = payload._type === 'product' ? Product : Delivery
     
+    // Handle document deletion
+    if (payload._type === 'delete') {
+      await Model.findByIdAndDelete(payload._id)
+      return NextResponse.json({ success: true, message: 'Document deleted' })
+    }
+
+    // Handle create/update
     const result = await Model.findOneAndUpdate(
       { _id: payload._id },
       payload,
