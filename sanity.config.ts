@@ -18,36 +18,39 @@ export default defineConfig({
   plugins: [
     structureTool(),
     visionTool({
-      defaultApiVersion: 'v2022-06-30'
+      defaultApiVersion: '2022-06-30'
     })
   ],
   schema,
   document: {
-    // @ts-ignore - Sanity types are not fully compatible
+    // @ts-ignore
     actions: (prev) => {
       return prev.map((originalAction: any) => {
-        // Only modify the publish action
         if (originalAction.type === 'publish') {
           return {
             ...originalAction,
-            async handle(params: any) {
+            async handle(props: any) {
               // Call original publish action
-              await originalAction.handle(params)
+              await originalAction.handle(props)
 
-              // Get the document from params
-              const { draft, published } = params
-              const doc = draft || published
-
+              const doc = props.draft || props.published
+              
               if (doc) {
                 try {
-                  // Sync to MongoDB
-                  await fetch('/api/sanity-webhook', {
+                  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sanity-webhook`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
+                      'x-api-key': process.env.SANITY_API_TOKEN!
                     },
                     body: JSON.stringify(doc)
                   })
+
+                  if (!response.ok) {
+                    throw new Error(`Failed to sync: ${response.statusText}`)
+                  }
+
+                  console.log('Document synced to MongoDB:', doc._id)
                 } catch (error) {
                   console.error('MongoDB sync failed:', error)
                 }
