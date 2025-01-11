@@ -21,5 +21,5 @@ export default defineConfig({
     allowHeaders: ['Authorization', 'Content-Type'],
     allowOrigins: ['http://localhost:3000', 'https://elite-restuarant.vercel.app']
   },
-  apiVersion: '2023-05-03',
+  apiVersion: '2022-06-30',
 })
