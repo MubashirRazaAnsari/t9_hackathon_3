@@ -15,11 +15,5 @@ export default defineConfig({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
   basePath: '/studio',
   plugins: [structureTool()],
-  schema,
-  cors: {
-    allowCredentials: true,
-    allowHeaders: ['Authorization', 'Content-Type'],
-    allowOrigins: ['http://localhost:3000', 'https://elite-restuarant.vercel.app']
-  },
-  apiVersion: '2022-06-30',
+  schema
 })
