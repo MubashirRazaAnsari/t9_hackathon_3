@@ -6,47 +6,29 @@ import { auth } from '@/lib/auth'
 
 export async function POST(request: Request) {
   try {
+    // Verify webhook authenticity
     const isAuthenticated = await auth(request)
     if (!isAuthenticated) {
-      console.log('Unauthorized webhook request')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     await dbConnect()
-    const body = await request.json()
-    
-    console.log('Received webhook:', {
-      type: body._type,
-      operation: body.operation,
-      documentId: body._id
+    const payload = await request.json()
+
+    console.log('Webhook received:', {
+      id: payload._id,
+      type: payload._type,
+      rev: payload._rev
     })
 
-    if (!body._type || !body._id) {
-      throw new Error('Missing required fields')
-    }
+    // Handle the webhook
+    const Model = payload._type === 'product' ? Product : Delivery
+    const result = await Model.findOneAndUpdate(
+      { _id: payload._id },
+      payload,
+      { upsert: true, new: true }
+    )
 
-    let result
-    switch (body.operation) {
-      case 'create':
-      case 'update':
-        const Model = body._type === 'product' ? Product : Delivery
-        result = await Model.findOneAndUpdate(
-          { _id: body._id },
-          body,
-          { upsert: true, new: true }
-        )
-        break
-      
-      case 'delete':
-        const DeleteModel = body._type === 'product' ? Product : Delivery
-        result = await DeleteModel.findByIdAndDelete(body._id)
-        break
-
-      default:
-        throw new Error(`Unknown operation: ${body.operation}`)
-    }
-
-    console.log('Operation result:', result)
     return NextResponse.json({ success: true, result })
   } catch (error) {
     console.error('Webhook error:', error)

@@ -7,27 +7,26 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-      required: true,
+      validation: (Rule: { required: () => any; }) => Rule.required()
     },
     {
       name: 'description',
       title: 'Description',
-      type: 'text',
+      type: 'text'
     },
     {
       name: 'price',
       title: 'Price',
       type: 'number',
+      validation: (Rule: { required: () => { (): any; new(): any; min: { (arg0: number): any; new(): any; }; }; }) => Rule.required().min(0)
     },
     {
       name: 'image',
       title: 'Image',
       type: 'image',
-    },
-    {
-      name: 'category',
-      title: 'Category',
-      type: 'string',
-    },
-  ],
+      options: {
+        hotspot: true
+      }
+    }
+  ]
 } 
