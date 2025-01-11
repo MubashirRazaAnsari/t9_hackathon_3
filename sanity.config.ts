@@ -37,22 +37,33 @@ export default defineConfig({
               
               if (doc) {
                 try {
+                  const token = process.env.SANITY_API_TOKEN
+                  if (!token) throw new Error('Missing API token')
+
                   const response = await fetch(`${baseUrl}/api/sanity-webhook`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
-                      'x-api-key': process.env.SANITY_API_TOKEN!
+                      'x-api-key': token,
+                      'Origin': baseUrl
                     },
-                    body: JSON.stringify(doc)
+                    credentials: 'include',
+                    mode: 'cors',
+                    body: JSON.stringify({
+                      ...doc,
+                      _type: doc._type || 'product'
+                    })
                   })
 
                   if (!response.ok) {
-                    throw new Error(`Failed to sync: ${response.statusText}`)
+                    const text = await response.text()
+                    throw new Error(`Failed to sync: ${response.status} ${text}`)
                   }
 
                   console.log('Document synced to MongoDB:', doc._id)
                 } catch (error) {
                   console.error('MongoDB sync failed:', error)
+                  throw error // Re-throw to show error in Studio
                 }
               }
             }

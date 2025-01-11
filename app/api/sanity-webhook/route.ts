@@ -4,10 +4,23 @@ import Product from '@/models/Product'
 import Delivery from '@/models/Delivery'
 import { auth } from '@/lib/auth'
 
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-api-key',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  })
+}
+
 export async function POST(request: Request) {
   try {
     const isAuthenticated = await auth(request)
     if (!isAuthenticated) {
+      console.error('Authentication failed')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
