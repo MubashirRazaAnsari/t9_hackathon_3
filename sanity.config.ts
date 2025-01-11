@@ -25,12 +25,12 @@ export default defineConfig({
   document: {
     // @ts-ignore - Sanity types are not fully compatible
     actions: (prev) => {
-      return prev.map((originalAction) => {
+      return prev.map((originalAction: any) => {
         // Only modify the publish action
         if (originalAction.type === 'publish') {
           return {
             ...originalAction,
-            async handle(params) {
+            async handle(params: any) {
               // Call original publish action
               await originalAction.handle(params)
 
