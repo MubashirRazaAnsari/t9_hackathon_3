@@ -7,7 +7,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/studio/:path*',
+        source: '/api/:path*',
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
@@ -16,6 +16,10 @@ const nextConfig = {
           {
             key: 'Access-Control-Allow-Methods',
             value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT'
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, x-api-key'
           }
         ]
       }

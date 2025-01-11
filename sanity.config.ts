@@ -9,6 +9,8 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schema } from './sanity/schemaTypes'
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://elite-restuarant.vercel.app'
+
 export default defineConfig({
   name: 'default',
   title: 'Elite Restaurant',
@@ -30,14 +32,12 @@ export default defineConfig({
           return {
             ...originalAction,
             async handle(props: any) {
-              // Call original publish action
               await originalAction.handle(props)
-
               const doc = props.draft || props.published
               
               if (doc) {
                 try {
-                  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sanity-webhook`, {
+                  const response = await fetch(`${baseUrl}/api/sanity-webhook`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
