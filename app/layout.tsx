@@ -3,7 +3,6 @@ import { Inter, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import Navbar from "./shared/Navbar";
 import Footer from "./shared/Footer";
-import { startSanityListener } from '@/sanity/lib/sanityListener'
 
 const inter = Inter({ subsets: ["latin"] });
 const greatVibes = Great_Vibes({
@@ -23,12 +22,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Start listener in development only
-  if (process.env.NODE_ENV === 'development') {
-    startSanityListener()
-      .then(() => console.log('Sanity listener started'))
-      .catch(console.error)
-  }
 
   return (
     <html lang="en">
